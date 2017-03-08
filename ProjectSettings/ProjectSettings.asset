@@ -379,9 +379,14 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLUseWasm: 0
   webGLCompressionFormat: 1
-  scriptingDefineSymbols: {1: CROSS_PLATFORM_INPUT, 4: CROSS_PLATFORM_INPUT;MOBILE_INPUT,
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT, 14: MOBILE_INPUT, 17: MOBILE_INPUT, 20: MOBILE_INPUT,
-    22: MOBILE_INPUT}
+  scriptingDefineSymbols:
+    1: CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: MOBILE_INPUT
+    17: MOBILE_INPUT
+    20: MOBILE_INPUT
+    22: MOBILE_INPUT
   platformArchitecture:
     iOS: 2
     tvOS: 1
@@ -473,10 +478,7 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 0
     Collab: 1
-    ErrorHub: 0
-    Hub: 0
     UNet: 1
   cloudProjectId: e9e6c888-ef86-4db9-aadd-5ca256c672c7
   projectName: Weapon Runner
