@@ -27,6 +27,10 @@ public class GameGUI : MonoBehaviour
     [Tooltip ("We'll show this button or not based on what's in the result data.")]
     public Button restartButton;
 
+    public Text scoreText;
+
+    public Text highScoreText;
+
     public ResultData[] resultData;
 
     //a struct is basically the same as a class, except it acts more like a primtive variable.
@@ -47,6 +51,7 @@ public class GameGUI : MonoBehaviour
     protected Game.GameState lastShownState;
     protected float lastShownHitPoints;
     protected int lastShownGemCount;
+    protected int lastShownScore;
 
     public void Awake() 
     {
@@ -87,6 +92,7 @@ public class GameGUI : MonoBehaviour
         UpdateResultText( force );
         UpdateHealthImages( force );
         UpdateGemImages( force );
+        UpdateScore ( force );
     }
 
     protected void UpdateResultText( bool force )
@@ -136,5 +142,15 @@ public class GameGUI : MonoBehaviour
         }
 
         lastShownGemCount = gemCount;
+    }
+
+    protected void UpdateScore ( bool force )
+    {
+        if ( !force && Game.Instance.Score == lastShownScore)
+        {
+            return;
+        }
+        
+        scoreText.text = "" + Game.Instance.Score;
     }
 }

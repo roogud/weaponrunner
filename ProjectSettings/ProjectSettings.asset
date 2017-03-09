@@ -478,9 +478,12 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
     Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
-  cloudProjectId: e9e6c888-ef86-4db9-aadd-5ca256c672c7
+  cloudProjectId: 35e5e503-ac9c-436a-98c4-5106a8698882
   projectName: Weapon Runner
-  organizationId: loxmyth
+  organizationId: roogud
   cloudEnabled: 0

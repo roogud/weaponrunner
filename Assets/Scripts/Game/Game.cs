@@ -32,6 +32,9 @@ public class Game : MonoBehaviour
         WonWithEasterEgg
     };
 
+    //Starting point of our character
+    protected Vector3 playerStartPos;
+
     //everything through Awake is called a "singleton" pattern,
     //and this is how you'd typically do it in Unity.
     //it forces there to be only one Game, and we can access it from anywhere
@@ -57,6 +60,12 @@ public class Game : MonoBehaviour
         DontDestroyOnLoad( gameObject );
     }
 
+    public void Start() 
+    {
+        playerStartPos = player.transform.position;
+       
+    }
+
     public void Update() 
     {
         RefreshState();
@@ -72,6 +81,22 @@ public class Game : MonoBehaviour
     {
         get;
         protected set;
+    }
+
+    public int Score
+    
+    {
+        get
+        {
+            if ( player == null )
+            {
+                return 0;
+            }
+
+            return(int) (player.transform.position.x - playerStartPos.x);
+            
+        }
+        
     }
 
     protected void RefreshState()
