@@ -5,7 +5,7 @@
 Things to do: 
 
 - [ ] Random platform height
-- [ ] Enemy spawners
-- [ ] Powerup generator
+- [x] Enemy spawners
+- [x] Powerup generator
 - [ ] Score counter
 
