@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledMover: {fileID: 114896953799895816}
+  jumpSound: {fileID: 0}
   controlledJumper: {fileID: 114981918059003780}
 --- !u!114 &114639710222564012
 MonoBehaviour:

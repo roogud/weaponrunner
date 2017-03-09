@@ -29,7 +29,8 @@ GameObject:
   - component: {fileID: 114538650965528826}
   - component: {fileID: 114826709769266100}
   - component: {fileID: 114355469901608384}
-  m_Layer: 0
+  - component: {fileID: 82646739491225996}
+  m_Layer: 11
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4351684445415240}
   - component: {fileID: 212081153595707518}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BaseSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1885130749623674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 4819118088178478}
   m_RootOrder: 0
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585233243797894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.04, y: 3.11, z: 0}
+  m_LocalPosition: {x: 18.731304, y: 0.7333412, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4351684445415240}
@@ -110,9 +111,89 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.027948856, y: -0.1676929}
+  m_Offset: {x: -0.05, y: 0.2}
   serializedVersion: 2
-  m_Size: {x: 0.72051156, y: 0.6646142}
+  m_Size: {x: 1.4, y: 0.4}
+--- !u!82 &82646739491225996
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1585233243797894}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b609e6e269cd1c841ae9fb606ce774c4, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114223529493511334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumHitPoints: 1
   invincibilityTime: 0
+  fireballPoweredTimeRemaining: 0
+  fireballPoweredParticles: {fileID: 0}
 --- !u!114 &114355469901608384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed00031343bb4e60a08134a93c81881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpImpulse: 6
+  jumpImpulse: 3
   jumpDelay: 0
 --- !u!114 &114538650965528826
 MonoBehaviour:
@@ -151,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledMover: {fileID: 114751490308932226}
-  patrolTime: 8
+  patrolTime: 2
   looksAhead: 0
   lookAheadDistance: 0
 --- !u!114 &114696310076944538
@@ -179,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+  deathSound: {fileID: 0}
 --- !u!114 &114739163249777222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,5 +338,5 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300308, guid: 1bc1941bcefc74b2a83f7f94e588136e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0

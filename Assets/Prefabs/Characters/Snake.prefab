@@ -122,7 +122,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b609e6e269cd1c841ae9fb606ce774c4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledMover: {fileID: 114212696974512938}
-  patrolTime: 0
+  patrolTime: 3
   looksAhead: 1
   lookAheadDistance: 0.5
 --- !u!114 &114850130153771946
