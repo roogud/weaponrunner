@@ -24,6 +24,8 @@ AnimationClip:
       value: {fileID: 21300058, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
     - time: 0.26666668
       value: {fileID: 21300060, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
+    - time: 0.38333333
+      value: {fileID: 21300060, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
     attribute: m_Sprite
     path: BaseSprite
     classID: 212
@@ -44,6 +46,7 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 21300056, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
     - {fileID: 21300058, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
+    - {fileID: 21300060, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
     - {fileID: 21300060, guid: fa2116797eda24c2888ee3fd09e6ed99, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -71,11 +74,4 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
-  m_Events:
-  - time: 0.4
-    functionName: 
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

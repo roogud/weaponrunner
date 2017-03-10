@@ -32,6 +32,8 @@ public class Spawner : MonoBehaviour
         GameObject obj = Instantiate<GameObject>(spawnedPrefab);
 		GameObject nme = Instantiate<GameObject> (enemy[Random.Range(0,enemy.Length)]);
 
+		GeneratePlatformHeight ();
+
 //        obj.transform.parent = parentToThis ? transform : transform.parent;
         obj.transform.position = platformSpawnTarget != null ? platformSpawnTarget.position : transform.position;
 		nme.transform.position = enemySpawnTarget != null ? enemySpawnTarget.position : transform.position;
@@ -42,4 +44,12 @@ public class Spawner : MonoBehaviour
 			pwrup.transform.position = powerupSpawnTarget != null ? powerupSpawnTarget.position : transform.position;
 		}
     }
+	public virtual void GeneratePlatformHeight()
+	{
+		Vector3 currentHeight = platformSpawnTarget.position;
+		Vector3 newHeight = platformSpawnTarget.position;
+		newHeight.y = currentHeight.y + Random.Range(-2, 2);
+		if (newHeight.y <= -3 || newHeight.y >= 5)newHeight.y = currentHeight.y;
+		platformSpawnTarget.position = newHeight;
+	}
 }
