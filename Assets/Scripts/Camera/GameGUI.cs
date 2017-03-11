@@ -150,7 +150,9 @@ public class GameGUI : MonoBehaviour
         {
             return;
         }
-        
         scoreText.text = "" + Game.Instance.Score;
+        highScoreText.text = "" + Mathf.Max ( Game.Instance.Score, Game.Instance.HighScore);
+
+        lastShownScore = Game.Instance.Score;
     }
 }

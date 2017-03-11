@@ -84,7 +84,6 @@ public class Game : MonoBehaviour
     }
 
     public int Score
-    
     {
         get
         {
@@ -99,6 +98,13 @@ public class Game : MonoBehaviour
         
     }
 
+    public int HighScore
+    {
+        get {
+        return PlayerPrefs.GetInt("HighScore", 0);
+        }
+    }
+
     protected void RefreshState()
     {
         //if we lost, the state can't change
@@ -110,7 +116,7 @@ public class Game : MonoBehaviour
         //first, check to see if we died
         if ( PlayerDied() )
         {
-            State = GameState.Lost;
+            DoPlayerLost();
             return;
         }
 
@@ -151,5 +157,16 @@ public class Game : MonoBehaviour
     protected bool WonGame()
     {
         return player.GetComponent<PickupGetter>().GetPickupCount( gemItemId ) >= gemWinCount;
+    }
+
+    protected void DoPlayerLost()
+    {
+        State = GameState.Lost;
+
+        if( Score > HighScore )
+        {
+            PlayerPrefs.SetInt("HighScore", Score);
+        }
+
     }
 }
