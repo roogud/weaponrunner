@@ -15,6 +15,8 @@ public class Mover : MonoBehaviour
 
     [Tooltip ("When our X velocity is lower than this, we are standing. This is mostly for aesthetic reasons like animations.")]
     public float minimumWalkSpeed = 0.1f;
+
+	public Game.GameState state;
     
     //if this Mover has an Animator attached, we can play animations as we go.
     protected Animator animator;
@@ -42,18 +44,31 @@ public class Mover : MonoBehaviour
     //aerialAcceleration values, depending on if we're in the air or not.
     public void AccelerateInDirection(Vector2 direction)
     {
-        float accel = acceleration;
-        if ( !groundDetector.isOnGround )
-        {
-            accel = aerialAcceleration;
-        }
+		string state = Game.Instance.State.ToString();
+		if ( state == "Lost") {
+			acceleration = 0;
+		}
 
-        //GetComponent<type>() will give you the component of the given type that is attached to this same object
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector3 newVelocity = rb.velocity + direction * accel * Time.deltaTime;
-        newVelocity.x = Mathf.Clamp( newVelocity.x, -maximumSpeed, maximumSpeed );
-        rb.velocity = newVelocity;
-    }
+//
+			
+//		Destructible player = GetComponent<Destructible)>;
+// 		if (!player.isDying) {
+			
+			float accel = acceleration;
+			if ( !groundDetector.isOnGround )
+			{
+				accel = aerialAcceleration;
+			}
+
+			//GetComponent<type>() will give you the component of the given type that is attached to this same object
+			Rigidbody2D rb = GetComponent<Rigidbody2D>();
+			Vector3 newVelocity = rb.velocity + direction * accel * Time.deltaTime;
+			newVelocity.x = Mathf.Clamp( newVelocity.x, -maximumSpeed, maximumSpeed );
+			rb.velocity = newVelocity;
+		}
+			
+
+//    }
 
     //this is convenient for controllers to know. we're walking if we have any x velocity.
     public bool IsWalking()
