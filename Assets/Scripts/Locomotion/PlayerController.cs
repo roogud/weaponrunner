@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     
     public void Update()
     {
+		if (destructible.isAlive) {
         //we can use the convenience of Unity's input axes to get direction automatically.
         //bonus! this works with WASD and we can hook it up to work with controllers!
         controlledMover.AccelerateInDirection( new Vector3( Input.GetAxis( "Horizontal" ), 0.0f, 0.0f ) );
@@ -30,10 +31,12 @@ public class PlayerController : MonoBehaviour
             controlledJumper.Jump();
             jumpSound.Play();
         }
-        if ( destructible.isFireballPoweredActive ) {
-            if (Input.GetButtonDown("Fire1")){
-                blaster.Shoot();
-            }
+			if (destructible.isFireballPoweredActive) {
+				if (Input.GetButtonDown ("Fire1")) {
+					blaster.Shoot ();
+					destructible.ShootFireball ();
+				}
+			}
         }
     }
 }

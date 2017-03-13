@@ -13,10 +13,11 @@ public class Destructor : MonoBehaviour
         Destructible hitDestructible = collision.collider.GetComponent<Destructible>();
         
         //it's possible that we don't have any Destructible at all, like if we hit something else
-        if ( hitDestructible != null )
-        {
-            hitDestructible.TakeDamage( damageAmount );
-            deathSound.Play();
-        }
-    }
-}
+		if (hitDestructible != null) {
+			hitDestructible.TakeDamage (damageAmount);
+			if (deathSound != null) {
+				deathSound.Play ();
+			} 
+		}
+	}
+ } 

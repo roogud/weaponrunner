@@ -11,7 +11,9 @@ public class Destructible : MonoBehaviour
 
     protected float lastTimeHurt;
 
-    public float fireballPoweredTimeRemaining;
+	public int fireballPoweredAmmoRemaining;
+	public int fireballMaxAmmo = 3;
+	public float[] fireballParticleLifetimeValues;
 
     public bool isFireballPoweredActive {
 		get; protected set;
@@ -19,6 +21,12 @@ public class Destructible : MonoBehaviour
 
 	[SerializeField]
 	protected ParticleSystem fireballPoweredParticles;
+
+	public bool isAlive {
+		get {
+			return hitPoints >0;
+		}
+	}
     
     public virtual float hitPoints
     {
@@ -39,23 +47,14 @@ public class Destructible : MonoBehaviour
         //we're setting the last time hurt in the past so that we can be hurt immediately
         lastTimeHurt = Time.time - invincibilityTime;
 
-        fireballPoweredTimeRemaining = 0.0f;
+		fireballPoweredAmmoRemaining = 0;
 		if (fireballPoweredParticles != null) {
 			fireballPoweredParticles.gameObject.SetActive (false);
 		}
     }
     
     public virtual void Update() {
-        if (isFireballPoweredActive) {
-            fireballPoweredTimeRemaining -= Time.deltaTime;
-                if (fireballPoweredTimeRemaining < 0.0f) {
-                    fireballPoweredTimeRemaining = 0.0f;
-				isFireballPoweredActive = false;
-				if (fireballPoweredParticles !=null) {
-					fireballPoweredParticles.gameObject.SetActive (false);
-				}
-            }
-        }
+           
     }
     public virtual void TakeDamage( float amount )
     {
@@ -94,13 +93,41 @@ public class Destructible : MonoBehaviour
         isDying = true;
         Object.Destroy( gameObject );
     }
-    public virtual void ActivateFireballPowered(float p_time){
-        fireballPoweredTimeRemaining = p_time;
-		isFireballPoweredActive = true;
-		if (fireballPoweredParticles != null) {
-			if (fireballPoweredParticles != null) {
-				fireballPoweredParticles.gameObject.SetActive (true);
-			}
+	public virtual void ActivateFireballPowered (int p_count){
+		fireballPoweredAmmoRemaining += p_count;
+		if (fireballPoweredAmmoRemaining > fireballMaxAmmo) {
+			fireballPoweredAmmoRemaining = fireballMaxAmmo;
+			UpdateFireballParticleLifetime ();
 		}
-    }
+		isFireballPoweredActive = true;
+		FireballPoweredParticlesActive (true);
+	}
+	public virtual void ShootFireball(){
+		fireballPoweredAmmoRemaining--;
+		if (fireballPoweredAmmoRemaining < 0) {
+			fireballPoweredAmmoRemaining = 0;
+		}
+		if (fireballPoweredAmmoRemaining == 0) {
+			isFireballPoweredActive = false;
+			FireballPoweredParticlesActive (false);
+		}
+		UpdateFireballParticleLifetime ();
+	}
+
+	public virtual void FireballPoweredParticlesActive(bool enabled) {
+		if (fireballPoweredParticles != null) {
+			fireballPoweredParticles.gameObject.SetActive (enabled);
+		}
+	}
+
+	public virtual void UpdateFireballParticleLifetime() {
+		
+		int lifetimeIndex = fireballPoweredAmmoRemaining - 1;
+		lifetimeIndex = Mathf.Clamp (lifetimeIndex, 0, fireballParticleLifetimeValues.Length - 1);
+		float lifetimeValue = fireballParticleLifetimeValues [lifetimeIndex];
+			if(fireballPoweredParticles != null) {
+				ParticleSystem.MainModule main = fireballPoweredParticles.main;
+				main.startLifetime = lifetimeValue;
+			}
+	}
 }

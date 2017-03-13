@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   id: fIreball_powerup
-  powerupTime: 10
+  ammoAmount: 3
 --- !u!212 &212231930673316378
 SpriteRenderer:
   m_ObjectHideFlags: 1
