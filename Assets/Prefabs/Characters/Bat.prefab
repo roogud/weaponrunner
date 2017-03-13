@@ -205,10 +205,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece25255c01154832a1bc0f29d0f0c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumHitPoints: 1
+  maximumHitPoints: 0.08
   invincibilityTime: 0
-  fireballPoweredTimeRemaining: 0
+  fireballPoweredAmmoRemaining: 0
+  fireballMaxAmmo: 3
+  fireballParticleLifetimeValues: []
   fireballPoweredParticles: {fileID: 0}
+  deathParticles: {fileID: 198090414805024002, guid: e97ac41ea8355476687e5f49f25a58cc,
+    type: 2}
 --- !u!114 &114355469901608384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +295,7 @@ MonoBehaviour:
   aerialAcceleration: 2
   maximumSpeed: 4
   minimumWalkSpeed: 0.5
+  state: 0
 --- !u!114 &114826709769266100
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,12 +15,17 @@ public class Destructible : MonoBehaviour
 	public int fireballMaxAmmo = 3;
 	public float[] fireballParticleLifetimeValues;
 
-    public bool isFireballPoweredActive {
+
+	public bool isFireballPoweredActive {
 		get; protected set;
     }
 
 	[SerializeField]
 	protected ParticleSystem fireballPoweredParticles;
+
+	[SerializeField]
+	protected ParticleSystem deathParticles;
+
 
 	public bool isAlive {
 		get {
@@ -85,10 +90,14 @@ public class Destructible : MonoBehaviour
 
     public virtual void Die()
     {
-        if ( isDying )
-        {
-            return;
-        }
+		if (isDying)
+		{
+			return;
+		}
+		if (deathParticles != null) {
+			ParticleSystem deathParticlesInstance = Instantiate(deathParticles);
+			deathParticlesInstance.transform.position = transform.position;
+		}
         
         isDying = true;
         Object.Destroy( gameObject );
